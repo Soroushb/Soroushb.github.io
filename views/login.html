@@ -32,21 +32,23 @@
             </div>
           </nav>
         </header>
+        
+        <div class="container">
         <div class="title">
           <h3 class="display-5 text-left"><b>User Login</b></h3>
         </div>
-        <form>
+        <form method="POST" action="/login" >
           <div class="form-group">
             <label for="emailAddress">Email Address</label>
-            <input type="email" class="form-control" id="emailAddress" placeholder="Email Address">
+            <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address">
           </div>
           <div class="form-group">
             <label for="passwordInput">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+            <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password">
           </div>
           <button type="submit" class="btn btn-primary">Log In</button>
         </form>
-
+      </div>
         <footer class="py-3 bg-success">
           <div id="title" class="row text-center">
              <p class="text-left">Fellini's Italian Restaurant</p>

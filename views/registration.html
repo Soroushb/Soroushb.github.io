@@ -32,17 +32,19 @@
             </div>
           </nav>
         </header>
-        <div class="title">
-          <h3 class="display-5 text-left"><b>Create Account</b></h3>
-        </div>
-        <form method="POST" action="/registration" >
+        
+        <div class="container">
+          <div class="title">
+            <h3 class="display-5 text-left"><b>Create Account</b></h3>
+          </div>
+        <form method="POST" action="/registrationSubmit" >
           <div class="form-group">
-            <label for="nameInput"><br>First Name</label>
-            <input type="text" class="form-control" name="nameInput" id="nameInput" placeholder="First Name">
+            <label for="FirstName"><br>First Name</label>
+            <input type="text" class="form-control" name="FirstName" id="FirstName" placeholder="First Name">
           </div>
           <div class="form-group">
-            <label for="lastNameInput">Last Name</label>
-            <input type="text" class="form-control" name="lastNameInput" id="lastNameInput" placeholder="Last Name">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="LastName" id="lastName" placeholder="Last Name">
           </div>
           <div class="form-group">
             <label for="emailAddress">Email Address</label>
@@ -54,6 +56,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+      </div>
         
         <footer class="py-3 bg-success">
           <div id="title" class="row text-center">
