@@ -83,7 +83,7 @@ module.exports.getOne = function(x){
 }
 
 var users = [
-  {name: "Jacques", lastName: "Tati", email:"monOncle@yahoo.com", password: "playtime", role:"director"}
+  {FirstName: "Jacques", lastName: "Tati", email:"monOncle@yahoo.com", password: "playtime", role:"director"}
 ]
 
 module.exports.register = (user) => {
@@ -97,4 +97,33 @@ module.exports.login = (user) => {
   }else{
     return false;
   }
+}
+
+module.exports.validateNull = (name) => {
+  if(!name){return false;}
+  else{return true;}
+}
+
+module.exports.validatePassword = (password) => {
+  var regex = /^[a-zA-Z0-9]+$/
+  var isValid = regex.test(password);
+  if(isValid && password.length > 6 && password.length < 12){return true;}else{return false}
+}
+
+module.exports.findEmailAddress = (email) => {
+  var found = false;
+  for(var i = 0; i < users.length; i++){
+  if(email == users[i].email)
+  found = true;
+  }
+  return found;
+}
+
+module.exports.findpassword = (password) => {
+  var found = false;
+  for(var i = 0; i < users.length; i++){
+  if(password == users[i].password)
+  found = true;
+  }
+  return found;
 }
