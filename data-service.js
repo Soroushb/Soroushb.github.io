@@ -82,7 +82,7 @@ module.exports.getOne = function(x){
 }
 
 var users = [
-  {FirstName: "Jacques", lastName: "Tati", email:"monOncle@yahoo.com", password: "playtime", role:"director"}
+  {FirstName: "Jacques", LastName: "Tati", emailAddress:"monOncle@yahoo.com", passwordInput: "playtime"}
 ]
 
 module.exports.register = (user) => {
@@ -90,13 +90,7 @@ users.push(user);
 console.log("users: ", users);
 }
 
-module.exports.login = (user) => {
-  if(true){
-    return true;
-  }else{
-    return false;
-  }
-}
+
 
 module.exports.validateNull = (name) => {
   if(!name){return false;}
@@ -110,18 +104,18 @@ module.exports.validatePassword = (password) => {
 }
 
 module.exports.findEmailAddress = (email) => {
-  var found = false;
-  for(var i = 0; i < users.length; i++){
-  if(email == users[i].email)
+  let found = false;
+  for(let i = 0; i < users.length; i++){
+  if(email == users[i].emailAddress)
   found = true;
   }
   return found;
 }
 
 module.exports.findpassword = (password) => {
-  var found = false;
-  for(var i = 0; i < users.length; i++){
-  if(password == users[i].password)
+  let found = false;
+  for(let i = 0; i < users.length; i++){
+  if(password == users[i].passwordInput)
   found = true;
   }
   return found;

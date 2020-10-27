@@ -1,4 +1,12 @@
-//Name: Soroush Bahrami    Student ID: 152499182
+/********************************************************************************** 
+ *  WEB322 –Assignment 02* 
+ *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part * 
+ *  of this assignment has been copied manually or electronically from any other source * 
+ *  (including 3rd party web sites) or distributed to other students.* 
+ * *  Name: _Soroush Bahrami__ Student ID: __152499182__ Date: __23/10/2020__** 
+ *  Online (Heroku, https://...) Link: ___________________________________________________** 
+ *  GitHub or Bitbucket repo Link: ___________________________________________________*
+ * ********************************************************************************/
 var express = require("express");
 const path = require("path");
 var app = express();
@@ -23,43 +31,42 @@ function onHttpStart() {
   console.log("Express http server listening on: " + HTTP_PORT);
 }
 
+//console.log("meal data: ", dataservice.getOne(1));
 
-app.get("/viewData", function(req,res){
+app.get("/", function(req,res){
     
   var someData = dataservice.getAll;
 
-  
-  res.render('viewData', {
+  res.render('index', {
       data: someData,
-      layout: false // do not use the default Layout (main.hbs)
+      layout: false 
   });
       
 });
 
-
-//console.log("meal data: ", dataservice.getOne(1));
-
-
-
-// setup a 'route' to listen on the default url path (http://localhost)
-app.get("/", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/index.html"));
-});
-
-
-
-// setup another route to listen on /about
 app.get("/top-package", function(req,res){
-  res.sendFile(path.join(__dirname,"/views/top-package.html"));
+  var someData = dataservice.getAll;
+
+  
+  res.render('top-package', {
+      data: someData,
+      layout: false 
+  });
 });
 
-app.get("/registration", function(req,res){
-  res.sendFile(path.join(__dirname,"/views/registration.html"));
+app.get('/registration', (req,res) => {
+  res.render('registration', {
+    layout: false 
 });
+})
 
-app.get("/login", function(req,res){
-  res.sendFile(path.join(__dirname,"/views/login.html"));
+
+app.get('/login', (req,res) => {
+  res.render('login', {
+    layout: false 
 });
+})
+
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -71,29 +78,45 @@ var transporter = nodemailer.createTransport({
 
 app.post("/registrationSubmit", (req,res) =>{
   var bool = true;
+  var registrationData = req.body;
 if(!dataservice.validateNull(req.body.FirstName)){
-  res.send({"message": "You must have a first name"})
+  res.render('firstError', {
+    data: registrationData,
+    layout: false 
+  });
 bool = false
 }
 if(!dataservice.validateNull(req.body.LastName)){
-  res.send({"message": "You must have a last name"})
+  res.render('lastError', {
+    data: registrationData,
+    layout: false 
+  });
 bool = false
 }
 if(!dataservice.validateNull(req.body.emailAddress)){
-  res.send({"message": "You must have a email address"})
+  res.render('emailError', {
+    data: registrationData,
+    layout: false 
+  });
 bool = false
 }
 if(!dataservice.validateNull(req.body.passwordInput)){
-  res.send({"message": "You must have a password"})
+  res.render('passNull', {
+    data: registrationData,
+    layout: false 
+  });
 bool = false
 }
 if(!dataservice.validatePassword(req.body.passwordInput)){
- res.send({"message": "invalid password"})
+  res.render('passInvalid', {
+    data: registrationData,
+    layout: false 
+  });
  bool = false;
 }
 if(bool == true){
   dataservice.register(req.body);
-  
+
 var mailOptions = {
   from: 'sepfabi44@gmail.com',
   to: req.body.emailAddress,
@@ -109,15 +132,27 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 }); 
 
-res.sendFile(path.join(__dirname,"/views/top-package.html"));
+
+res.render('dashboard', {
+  data: registrationData,
+  layout: false 
+});
+
 }
 });
 
 app.post('/login', (req,res) => {
+  var registrationData = req.body;
   if(dataservice.findEmailAddress(req.body.emailAddress) && dataservice.findpassword(req.body.passwordInput)){
-  res.send({"message": req.body})
+    res.render('loginSuccess', {
+      data: registrationData,
+      layout: false 
+    });
   }else{
-    res.send({"message": "not found"})
+    res.render('loginFail', {
+      data: registrationData,
+      layout: false 
+    });
   }
 })
 

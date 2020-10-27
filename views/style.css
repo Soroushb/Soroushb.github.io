@@ -12,7 +12,6 @@ body {
 form{
     margin: 30px;
     width: 30%;
-    font-family: "Bebas Neue", sans-serif;
 }
 
 .title{
@@ -107,4 +106,15 @@ footer{
 
 #title-footer{
     padding-left: 40px;
+}
+
+#Error{
+    font-size: 80%;
+    color: red;
+}
+
+#dashboardMessage{
+ 
+    font-family: "Bebas Neue", sans-serif;
+    color: #008C45;
 }

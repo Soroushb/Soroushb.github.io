@@ -45,83 +45,22 @@
         <section id="top-meal" class="container">
           <h2 class="display-7 text-center mt-5 mb-4"><b>These are our packages!</b></h2>
             <div class="row text-center">
+                 {{#each data}}
                <div class="col-md-3 mb-4">
                   <div class="card h-100">
-                     <img class="card-img-top" src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="food">
+                     <img class="card-img-top" src="{{imageUrl}}" alt="food">
                      <div class="card-body">
-                        <h4 class="card-title">Meatballs and Spaghetti</h4>
-                        <p class="card-text">$11.99</p>
+                        <h4 class="card-title">{{name}}</h4>
+                        <p class="card-text">${{price}}</p>
                      </div>
                   </div>
                </div>
-               
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.pexels.com/photos/2697229/pexels-photo-2697229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="food" width="275">
-                     <div class="card-body">
-                        <h4 class="card-title">Fettuccine Alfredo</h4>
-                           <p class="card-text">$9.99</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.pexels.com/photos/1058714/pexels-photo-1058714.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title"> Shrimp Scampi</h4>
-                        <p class="card-text">$15.00</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title"> Chicken Cacciatore</h4>
-                        <p class="card-text">$11.00</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.unsplash.com/photo-1581073759002-70a0a2044072?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title">Aqua Pazza</h4>
-                        <p class="card-text">$15.00</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.unsplash.com/photo-1581073763302-e8e63f3e94e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title">Gnocchi with tomato sauce and scampi</h4>
-                        <p class="card-text">$23.00</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.unsplash.com/photo-1593003290701-d5e71453a85a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title">Gnocchi al pomodoro</h4>
-                        <p class="card-text">$10.00</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-3 mb-4">
-                  <div class="card h-100">
-                     <img class="card-img-top" src="https://images.unsplash.com/photo-1601556123240-462c758a50db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="food">
-                     <div class="card-body">
-                        <h4 class="card-title">gnocchi in a sausage ragù</h4>
-                        <p class="card-text">$13.00</p>
-                     </div>
-                  </div>
-               </div>
+               {{/each}}
           </div>
        </section>
     
        <section>
+         
           <div class="divider">
           <h2 class="display-4 text-center">--------------------------------------------------</h2>
        </div>
