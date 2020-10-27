@@ -1,5 +1,4 @@
 let mealData = [
-mealPackage1 = 
 {
 imageUrl: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
 name: "Meatballs and Spaghetti",

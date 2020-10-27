@@ -4,6 +4,12 @@ const path = require("path");
 var app = express();
 let dataservice = require('./data-service');
 var nodemailer = require('nodemailer');
+const exphbs = require('express-handlebars');
+
+app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
+
+
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -17,6 +23,18 @@ function onHttpStart() {
   console.log("Express http server listening on: " + HTTP_PORT);
 }
 
+
+app.get("/viewData", function(req,res){
+    
+  var someData = dataservice.getAll;
+
+  
+  res.render('viewData', {
+      data: someData,
+      layout: false // do not use the default Layout (main.hbs)
+  });
+      
+});
 
 
 //console.log("meal data: ", dataservice.getOne(1));
@@ -75,7 +93,6 @@ if(!dataservice.validatePassword(req.body.passwordInput)){
 }
 if(bool == true){
   dataservice.register(req.body);
-  res.send({"message ":  req.body.FirstName + " " + req.body.LastName + " was registered"});
   
 var mailOptions = {
   from: 'sepfabi44@gmail.com',
@@ -92,6 +109,7 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 }); 
 
+res.sendFile(path.join(__dirname,"/views/top-package.html"));
 }
 });
 
