@@ -3,6 +3,7 @@ var express = require("express");
 const path = require("path");
 var app = express();
 let dataservice = require('./data-service');
+var nodemailer = require('nodemailer');
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -16,12 +17,18 @@ function onHttpStart() {
   console.log("Express http server listening on: " + HTTP_PORT);
 }
 
-console.log("meal data: ", dataservice.getOne(1));
+
+
+//console.log("meal data: ", dataservice.getOne(1));
+
+
 
 // setup a 'route' to listen on the default url path (http://localhost)
 app.get("/", function(req,res){
     res.sendFile(path.join(__dirname,"/views/index.html"));
 });
+
+
 
 // setup another route to listen on /about
 app.get("/top-package", function(req,res){
@@ -34,6 +41,14 @@ app.get("/registration", function(req,res){
 
 app.get("/login", function(req,res){
   res.sendFile(path.join(__dirname,"/views/login.html"));
+});
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'sepfabi44@gmail.com',
+    pass: 'Sepehr12'
+  }
 });
 
 app.post("/registrationSubmit", (req,res) =>{
@@ -60,7 +75,23 @@ if(!dataservice.validatePassword(req.body.passwordInput)){
 }
 if(bool == true){
   dataservice.register(req.body);
-  res.send({"message ":  req.body.FirstName + " " + req.body.LastName + " was registered"})
+  res.send({"message ":  req.body.FirstName + " " + req.body.LastName + " was registered"});
+  
+var mailOptions = {
+  from: 'sepfabi44@gmail.com',
+  to: req.body.emailAddress,
+  subject: 'Welcome '+ req.body.FirstName,
+  text: 'Hello ' + req.body.FirstName + ' ' + req.body.LastName + '! You are registered.'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+}); 
+
 }
 });
 
@@ -72,17 +103,7 @@ app.post('/login', (req,res) => {
   }
 })
 
-app.get("/getData", function(req,res){
-    
-  var someData = {
-  name: "John",
-  age: 23,
-  occupation: "developer",
-  company: "Scotiabank"
-  };
 
-  res.json(someData);
-});
 
 
 app.use(express.static('public'))
